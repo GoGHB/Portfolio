@@ -1,84 +1,3 @@
-import streamlit as st
-import streamlit.components.v1 as components
-import base64
-from pathlib import Path
-
-# ============================================================
-# PAGE CONFIG
-# ============================================================
-
-st.set_page_config(
-    page_title="Shubhanshu Singh | ML Engineer",
-    page_icon="💻",
-    layout="wide",
-    initial_sidebar_state="collapsed"
-)
-
-# ============================================================
-# STREAMLIT CSS
-# ============================================================
-
-st.markdown("""
-<style>
-    html, body, [class*="css"] {
-        margin: 0;
-        padding: 0;
-    }
-
-    .stApp {
-        background: #12161D;
-    }
-
-    [data-testid="stHeader"] {
-        display: none;
-    }
-
-    [data-testid="stToolbar"] {
-        display: none;
-    }
-
-    [data-testid="stDecoration"] {
-        display: none;
-    }
-
-    [data-testid="stMainBlockContainer"] {
-        max-width: 100%;
-        padding: 0;
-        margin: 0;
-    }
-
-    footer {
-        display: none;
-    }
-
-    iframe {
-        width: 100% !important;
-        border: none !important;
-    }
-</style>
-""", unsafe_allow_html=True)
-
-# ============================================================
-# VIDEO
-# ============================================================
-
-video_path = Path("1000009006.mp4")
-
-video_url = ""
-
-if video_path.exists():
-    try:
-        video_bytes = video_path.read_bytes()
-        video_base64 = base64.b64encode(video_bytes).decode("utf-8")
-        video_url = f"data:video/mp4;base64,{video_base64}"
-    except Exception:
-        video_url = ""
-
-# ============================================================
-# PORTFOLIO HTML
-# ============================================================
-
-portfolio_html = f"""
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,7 +22,7 @@ portfolio_html = f"""
 
 <style>
 
-:root {{
+:root {
     --ink:#12161D;
     --ink-2:#1B2129;
     --paper:#F3F1E9;
@@ -113,32 +32,32 @@ portfolio_html = f"""
     --green:#8FB98F;
     --line:rgba(243,241,233,0.12);
     --max-w:1100px;
-}}
+}
 
-* {{
+* {
     box-sizing:border-box;
-}}
+}
 
-html {{
+html {
     scroll-behavior:smooth;
     height:100%;
-}}
+}
 
-html, body {{
+html, body {
     margin:0;
     height:100%;
     overflow:hidden;
-}}
+}
 
-body {{
+body {
     background:var(--ink);
     color:var(--paper);
     font-family:'Inter',sans-serif;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
-}}
+}
 
-#page-scroll {{
+#page-scroll {
     position:relative;
     z-index:1;
     height:100%;
@@ -146,18 +65,18 @@ body {{
     overflow-x:hidden;
     -webkit-overflow-scrolling:touch;
     scroll-behavior:smooth;
-}}
+}
 
-#video-bg {{
+#video-bg {
     position:fixed;
     inset:0;
     z-index:0;
     overflow:hidden;
     pointer-events:none;
     background:var(--ink);
-}}
+}
 
-#video-bg video {{
+#video-bg video {
     position:absolute;
     top:50%;
     left:50%;
@@ -166,9 +85,9 @@ body {{
     object-fit:cover;
     transform:translate(-50%, -50%);
     opacity:0.25;
-}}
+}
 
-#video-bg::after {{
+#video-bg::after {
     content:"";
     position:absolute;
     inset:0;
@@ -179,46 +98,46 @@ body {{
             rgba(18,22,29,0.65) 45%,
             rgba(18,22,29,0.95) 100%
         );
-}}
+}
 
-header {{
+header {
     position:sticky;
     top:0;
     z-index:10;
     background:rgba(18,22,29,0.92);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
-}}
+}
 
-.nav-row {{
+.nav-row {
     display:flex;
     align-items:center;
     justify-content:space-between;
     padding:16px 28px;
     max-width:var(--max-w);
     margin:0 auto;
-}}
+}
 
-.nav-mark {{
+.nav-mark {
     font-family:'IBM Plex Mono',monospace;
     font-size:0.95rem;
     color:var(--paper);
-}}
+}
 
-.nav-mark span {{
+.nav-mark span {
     color:var(--amber);
-}}
+}
 
-.cursor {{
+.cursor {
     animation:blink 1.1s steps(1) infinite;
-}}
+}
 
-@keyframes blink {{
-    0%,49% {{opacity:1;}}
-    50%,100% {{opacity:0;}}
-}}
+@keyframes blink {
+    0%,49% {opacity:1;}
+    50%,100% {opacity:0;}
+}
 
-nav ul {{
+nav ul {
     list-style:none;
     display:flex;
     gap:22px;
@@ -226,133 +145,133 @@ nav ul {{
     padding:0;
     font-family:'IBM Plex Mono',monospace;
     font-size:0.85rem;
-}}
+}
 
-nav a {{
+nav a {
     color:var(--paper-dim);
     text-decoration:none;
-}}
+}
 
-nav a:hover {{
+nav a:hover {
     color:var(--amber);
-}}
+}
 
-.wrap {{
+.wrap {
     max-width:var(--max-w);
     margin:0 auto;
     padding:0 28px;
-}}
+}
 
-.hero {{
+.hero {
     padding:90px 0 70px;
-}}
+}
 
-.hero-grid {{
+.hero-grid {
     display:grid;
     grid-template-columns:1.15fr 0.85fr;
     gap:44px;
     align-items:center;
-}}
+}
 
-.prompt-line {{
+.prompt-line {
     font-family:'IBM Plex Mono',monospace;
     color:var(--green);
     font-size:0.85rem;
     margin:0 0 18px;
-}}
+}
 
-.prompt-line::before {{
+.prompt-line::before {
     content:"$ ";
     color:var(--paper-dim);
-}}
+}
 
-h1 {{
+h1 {
     font-family:'IBM Plex Mono',monospace;
     font-weight:600;
     font-size:clamp(2rem,5vw,3.2rem);
     line-height:1.2;
     margin:0 0 8px;
-}}
+}
 
-.role {{
+.role {
     font-family:'IBM Plex Mono',monospace;
     color:var(--steel);
     font-size:1.05rem;
     margin:0 0 24px;
-}}
+}
 
-.summary {{
+.summary {
     max-width:60ch;
     font-size:1.03rem;
     margin:0 0 30px;
-}}
+}
 
-.term-card {{
+.term-card {
     background:rgba(27,33,41,0.92);
     border:1px solid var(--line);
     box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);
-}}
+}
 
-.term-bar {{
+.term-bar {
     display:flex;
     align-items:center;
     gap:8px;
     padding:10px 14px;
     border-bottom:1px solid var(--line);
-}}
+}
 
-.dot {{
+.dot {
     width:9px;
     height:9px;
     border-radius:50%;
-}}
+}
 
-.dot.r {{
+.dot.r {
     background:#E8746B;
-}}
+}
 
-.dot.y {{
+.dot.y {
     background:var(--amber);
-}}
+}
 
-.dot.g {{
+.dot.g {
     background:var(--green);
-}}
+}
 
-.term-title {{
+.term-title {
     margin-left:8px;
     font-family:'IBM Plex Mono',monospace;
     font-size:0.75rem;
     color:var(--paper-dim);
-}}
+}
 
-.term-body {{
+.term-body {
     margin:0;
     padding:18px 16px;
     font-family:'IBM Plex Mono',monospace;
     font-size:0.83rem;
     line-height:1.9;
-}}
+}
 
-.tk {{
+.tk {
     color:var(--steel);
-}}
+}
 
-.tv {{
+.tv {
     color:var(--amber);
-}}
+}
 
-.tc {{
+.tc {
     color:var(--paper-dim);
-}}
+}
 
-.contact-row {{
+.contact-row {
     display:flex;
     flex-wrap:wrap;
     gap:18px;
-}}
+}
 
-.contact-row a {{
+.contact-row a {
     display:inline-flex;
     align-items:center;
     justify-content:center;
@@ -361,149 +280,149 @@ h1 {{
     border:1px solid var(--line);
     color:var(--paper-dim);
     transition:0.2s;
-}}
+}
 
-.contact-row a:hover {{
+.contact-row a:hover {
     color:var(--amber);
     border-color:var(--amber);
-}}
+}
 
-.contact-row svg {{
+.contact-row svg {
     width:19px;
     height:19px;
     fill:none;
     stroke:currentColor;
     stroke-width:1.6;
-}}
+}
 
-section:not(.hero) {{
+section:not(.hero) {
     border-top:1px solid var(--line);
-}}
+}
 
-section {{
+section {
     padding:60px 0;
-}}
+}
 
-.def-label {{
+.def-label {
     font-family:'IBM Plex Mono',monospace;
     font-size:0.95rem;
     color:var(--paper-dim);
     margin:0 0 30px;
-}}
+}
 
-.def-label .kw {{
+.def-label .kw {
     color:var(--steel);
-}}
+}
 
-.def-label .fn {{
+.def-label .fn {
     color:var(--amber);
-}}
+}
 
-.entry {{
+.entry {
     margin-bottom:30px;
     padding-left:20px;
     border-left:2px solid var(--line);
-}}
+}
 
-.entry-head {{
+.entry-head {
     display:flex;
     justify-content:space-between;
     align-items:baseline;
     flex-wrap:wrap;
     gap:6px 14px;
-}}
+}
 
-.entry-title {{
+.entry-title {
     font-weight:600;
     font-size:1.05rem;
-}}
+}
 
-.entry-org {{
+.entry-org {
     font-family:'IBM Plex Mono',monospace;
     font-size:0.82rem;
     color:var(--paper-dim);
-}}
+}
 
-.entry ul {{
+.entry ul {
     margin:8px 0 0;
     padding-left:18px;
     color:var(--paper-dim);
-}}
+}
 
-.entry li::marker {{
+.entry li::marker {
     color:var(--amber);
-}}
+}
 
-.proj-grid {{
+.proj-grid {
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:16px;
-}}
+}
 
-.proj {{
+.proj {
     position:relative;
     border:1px solid var(--line);
     padding:22px 20px 20px;
     background:rgba(27,33,41,0.92);
     transition:0.2s;
-}}
+}
 
-.proj:hover {{
+.proj:hover {
     border-color:var(--amber);
     transform:translateY(-3px);
-}}
+}
 
-.proj-tag {{
+.proj-tag {
     font-family:'IBM Plex Mono',monospace;
     font-size:0.72rem;
     color:var(--green);
     margin:0 0 10px;
-}}
+}
 
-.proj h3 {{
+.proj h3 {
     margin:0 0 8px;
     font-size:1.02rem;
-}}
+}
 
-.proj p {{
+.proj p {
     margin:0;
     font-size:0.9rem;
     color:var(--paper-dim);
-}}
+}
 
-.proj-link {{
+.proj-link {
     display:inline-block;
     margin-top:12px;
     font-family:'IBM Plex Mono',monospace;
     font-size:0.82rem;
     color:var(--amber);
     text-decoration:none;
-}}
+}
 
-.proj-link:hover {{
+.proj-link:hover {
     text-decoration:underline;
-}}
+}
 
-.skill-row {{
+.skill-row {
     display:flex;
     flex-wrap:wrap;
     gap:10px;
-}}
+}
 
-.skill-pill {{
+.skill-pill {
     font-family:'IBM Plex Mono',monospace;
     font-size:0.85rem;
     padding:7px 14px;
     border:1px solid var(--line);
     color:var(--paper);
-}}
+}
 
-.skill-pill .sym {{
+.skill-pill .sym {
     color:var(--amber);
     margin-right:8px;
-}}
+}
 
-.edu-entry {{
+.edu-entry {
     display:flex;
     justify-content:space-between;
     align-items:baseline;
@@ -511,81 +430,81 @@ section {{
     gap:4px 14px;
     padding:12px 0;
     border-bottom:1px solid var(--line);
-}}
+}
 
-.edu-name {{
+.edu-name {
     color:var(--paper);
     font-size:0.98rem;
-}}
+}
 
-.edu-meta {{
+.edu-meta {
     font-family:'IBM Plex Mono',monospace;
     font-size:0.82rem;
     color:var(--paper-dim);
     text-align:right;
-}}
+}
 
-.ach {{
+.ach {
     font-size:0.98rem;
     color:var(--paper-dim);
     padding-left:20px;
     position:relative;
-}}
+}
 
-.ach::before {{
+.ach::before {
     content:"✓";
     position:absolute;
     left:0;
     color:var(--green);
-}}
+}
 
-footer {{
+footer {
     padding:44px 0 64px;
     font-family:'IBM Plex Mono',monospace;
     font-size:0.8rem;
     color:var(--paper-dim);
     border-top:1px solid var(--line);
-}}
+}
 
-.footer-row {{
+.footer-row {
     display:flex;
     justify-content:space-between;
     align-items:center;
     flex-wrap:wrap;
     gap:10px;
-}}
+}
 
-.to-top {{
+.to-top {
     color:var(--paper-dim);
     text-decoration:none;
-}}
+}
 
-@media (max-width:720px) {{
+@media (max-width:720px) {
 
-    .hero-grid {{
+    .hero-grid {
         grid-template-columns:1fr;
-    }}
+    }
 
-    nav ul {{
+    nav ul {
         gap:10px;
         font-size:0.72rem;
-    }}
+    }
 
-    .nav-row {{
+    .nav-row {
         padding:14px 18px;
-    }}
+    }
 
-    .wrap {{
+    .wrap {
         padding:0 18px;
-    }}
-}}
+    }
+}
 
-@media (max-width:600px) {{
+@media (max-width:600px) {
 
-    .proj-grid {{
+    .proj-grid {
         grid-template-columns:1fr;
-    }}
-}}
+    }
+}
 
 </style>
 
@@ -599,23 +518,23 @@ footer {{
 ========================================================= -->
 
 <script>
-(function() {{
-  function resizeFrame() {{
-    try {{
+(function() {
+  function resizeFrame() {
+    try {
       var iframes = window.parent.document.querySelectorAll('iframe');
       var targetHeight = window.parent.innerHeight;
-      for (var i = 0; i < iframes.length; i++) {{
-        if (iframes[i].contentWindow === window) {{
+      for (var i = 0; i < iframes.length; i++) {
+        if (iframes[i].contentWindow === window) {
           iframes[i].style.height = targetHeight + 'px';
           break;
-        }}
-      }}
-    }} catch (e) {{}}
-  }}
+        }
+      }
+    } catch (e) {}
+  }
   window.addEventListener('resize', resizeFrame);
   resizeFrame();
   setTimeout(resizeFrame, 300);
-}})();
+})();
 </script>
 
 <!-- ========================================================
@@ -633,7 +552,7 @@ footer {{
     aria-hidden="true">
 
     <source
-        src="{video_url}"
+        src="1000009006.mp4"
         type="video/mp4">
 
 </video>
@@ -1142,7 +1061,7 @@ HTML
 </span>
 
 <span class="skill-pill">
-<span class="sym">{{ }}</span>
+<span class="sym">{ }</span>
 CSS
 </span>
 
@@ -1264,14 +1183,3 @@ href="#top">
 </body>
 
 </html>
-"""
-
-# ============================================================
-# RENDER PORTFOLIO
-# ============================================================
-
-components.html(
-    portfolio_html,
-    height=800,
-    scrolling=False
-)
